@@ -41,10 +41,8 @@ public class Pizza_Order {
             if (in.nextInt() == 1) {
                 printMenu();
                 next = true;
-            }
-            else System.out.println("See you next time!");
-        }
-        else System.out.println("See you next time!");
+            } else System.out.println("See you next time!");
+        } else System.out.println("See you next time!");
 
         boolean next2 = false;
         int input = 0;
@@ -56,14 +54,12 @@ public class Pizza_Order {
 
             if (in2.hasNextInt()) {
                 input = in2.nextInt();
-                if (input > 0 & input < 11){
+                if (input > 0 & input < 11) {
                     System.out.print("You have chosen number " + input + ": ");
                     next2 = true;
-                }
-                else System.out.println("Please input a valid number");
+                } else System.out.println("Please input a valid number");
 
-            }
-            else System.out.println("Please input a valid number");
+            } else System.out.println("Please input a valid number");
         }
 
         int pizzaPrice = 0;
@@ -117,7 +113,7 @@ public class Pizza_Order {
 
             System.out.println(selectedPizza);
 
-            boolean extraToppings = false;
+            boolean next3 = false;
             System.out.println("Would you like any extra toppings? this will cost 5 DKK extra.");
             System.out.printf("0. No\n1. Garlic\n2. Ranch dressing\n3. Extra cheese");
             System.out.println();
@@ -128,20 +124,33 @@ public class Pizza_Order {
             if (in3.hasNextInt()) {
                 in3input = in3.nextInt();
                 if (in3input > -1 & in3input < 4) toppingsInput = in3input;
+                next3 = true;
             }
 
-            String selectedTopping = "";
-            switch (toppingsInput) {
+            if (next3) {
+                String selectedTopping = "";
+                switch (toppingsInput) {
 
-                case 0: selectedTopping = "no extra toppings"; break;
-                case 1: selectedTopping = "garlic"; pizzaPrice +=5; break;
-                case 2: selectedTopping = "ranch dressing"; pizzaPrice +=5; break;
-                case 3: selectedTopping = "extra cheese"; pizzaPrice += 5; break;
+                    case 0:
+                        selectedTopping = "no extra toppings";
+                        break;
+                    case 1:
+                        selectedTopping = "garlic";
+                        pizzaPrice += 5;
+                        break;
+                    case 2:
+                        selectedTopping = "ranch dressing";
+                        pizzaPrice += 5;
+                        break;
+                    case 3:
+                        selectedTopping = "extra cheese";
+                        pizzaPrice += 5;
+                        break;
+                }
+                System.out.println("You have chosen " + selectedPizza + " with " + selectedTopping);
             }
-            System.out.println("You have chosen " + selectedPizza + " with " + selectedTopping);
         }
     }
-
 
 
 
