@@ -24,7 +24,6 @@ public class Pizza_Order {
     public static int price10 = 80;
     public static String pizza10 = "Fisherman: Tomato, Cheese, Tuna";
 
-
     public static void main(String[] args) {
 
         //initializes a new scanner, and prompts the user for input
@@ -49,7 +48,6 @@ public class Pizza_Order {
         if (next) {
             System.out.println("Please chose the number you would like to order");
             Scanner in2 = new Scanner(System.in);
-
             if (in2.hasNextInt()) {
                 input = in2.nextInt();
                 if (input > 0 & input < 11) {
@@ -114,7 +112,7 @@ public class Pizza_Order {
             String selectedTopping = "";
 
             //prompts user if they would like any extra toppings
-            System.out.println("Would you like any extra toppings? this will cost 5 DKK extra.");
+            System.out.println("Would you like any extra toppings? this will cost 5 DKK extra. you can order up to 1 of each topping");
             System.out.printf("0. No/Continue\n1. Garlic\n2. Ranch dressing\n3. Extra cheese");
             System.out.println();
 
@@ -134,7 +132,6 @@ public class Pizza_Order {
                     } else promptValidNum();
                 } else promptValidNum();
 
-
                 if (next3) {
                     switch (toppingsInput) {
                         case 0:
@@ -149,15 +146,22 @@ public class Pizza_Order {
                             else System.out.println("Don't you think that's enough garlic?");
                             break;
                         case 2:
-                            selectedTopping += ", ranch dressing";
-                            pizzaPrice += 5;
-                            break;
+                            if (ranchCount < 1) {
+                                selectedTopping += ", ranch dressing";
+                                pizzaPrice += 5;
+                                ranchCount++;
+                                break;
+                            }
+                            else System.out.println("Don't you think that's enough ranch?");
                         case 3:
-                            selectedTopping += ", extra cheese";
-                            pizzaPrice += 5;
-                            break;
+                            if (cheeseCount < 1) {
+                                selectedTopping += ", extra cheese";
+                                pizzaPrice += 5;
+                                cheeseCount++;
+                                break;
+                            }
+                            else System.out.println("Don't you think that's enough cheese?");
                     }
-
                     System.out.println("You have chosen " + selectedPizza + selectedTopping);
                 }
             }
@@ -184,15 +188,15 @@ public class Pizza_Order {
                 if (next4) {
                     switch (selectedSize) {
                         case 1:
-                            pizzaSize = "Standard size ";
+                            pizzaSize = "standard size ";
                             break;
                         case 2:
                             pizzaPrice = pizzaPrice*0.75;
-                            pizzaSize = "Child size ";
+                            pizzaSize = "child size ";
                             break;
                         case 3:
                             pizzaPrice = pizzaPrice*1.50;
-                            pizzaSize = "Family size ";
+                            pizzaSize = "family size ";
                             break;
                     }
                     System.out.println("You have ordered a " + pizzaSize + selectedPizza + selectedTopping + " for the price of DKK " + pizzaPrice);
@@ -200,7 +204,6 @@ public class Pizza_Order {
                 }
             }
         }
-
 
         //this function prints the menu out to the console
         public static void printMenu () {
@@ -222,5 +225,4 @@ public class Pizza_Order {
         public static void promptValidNum () {
             System.out.println("Please input a valid number");
         }
-
     }
