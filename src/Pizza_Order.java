@@ -16,7 +16,7 @@ public class Pizza_Order {
     public static int price6 = 80;
     public static String pizza6 = "Roma: Tomato, cheese, mushrooms, ";
     public static int price7 = 70;
-    public static String pizza7 = "Spicy: Tomato, cheese, chilli";
+    public static String pizza7 = "Spicy: Tomato, cheese, ham, chilli";
     public static int price8 = 80;
     public static String pizza8 = "Tomato Lover: Tomato";
     public static int price9 = 70;
@@ -118,6 +118,9 @@ public class Pizza_Order {
             System.out.printf("0. No/Continue\n1. Garlic\n2. Ranch dressing\n3. Extra cheese");
             System.out.println();
 
+            int garlicCount = 0;
+            int ranchCount = 0;
+            int cheeseCount = 0;
             while (next3) {
                 next3 = false;
                 next4 = false;
@@ -131,14 +134,19 @@ public class Pizza_Order {
                     } else promptValidNum();
                 } else promptValidNum();
 
+
                 if (next3) {
                     switch (toppingsInput) {
                         case 0:
                             next3 = false;
                             break;
                         case 1:
-                            selectedTopping += ", garlic";
-                            pizzaPrice += 5;
+                            if (garlicCount < 1) {
+                                selectedTopping += ", garlic";
+                                pizzaPrice += 5;
+                                garlicCount++;
+                            }
+                            else System.out.println("Don't you think that's enough garlic?");
                             break;
                         case 2:
                             selectedTopping += ", ranch dressing";
@@ -186,8 +194,6 @@ public class Pizza_Order {
                             pizzaPrice = pizzaPrice*1.50;
                             pizzaSize = "Family size ";
                             break;
-
-
                     }
                     System.out.println("You have ordered a " + pizzaSize + selectedPizza + selectedTopping + " for the price of DKK " + pizzaPrice);
                 }
@@ -196,7 +202,7 @@ public class Pizza_Order {
         }
 
 
-        //this function simply prints the menu out to the console
+        //this function prints the menu out to the console
         public static void printMenu () {
 
             System.out.printf("%-1s %-40s %-10s\n", "1.", pizza1, "Price DKK " + price1);
@@ -209,7 +215,7 @@ public class Pizza_Order {
             System.out.printf("%-1s %-40s %-10s\n", "8.", pizza8, "Price DKK " + price8);
             System.out.printf("%-1s %-40s %-10s\n", "9.", pizza9, "Price DKK " + price9);
             System.out.printf("%-1s %-39s %-10s\n", "10.", pizza10, "Price DKK " + price10);
-
+            System.out.println();
         }
 
         //this function asks the user for a valid number when the user inputs an invalid one
