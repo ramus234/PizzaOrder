@@ -14,7 +14,7 @@ public class Pizza_Order {
     public static int price5 = 60;
     public static String pizza5 = "Torino: Tomato, cheese, sausage";
     public static int price6 = 80;
-    public static String pizza6 = "Roma: Tomato, cheese, mushrooms, ";
+    public static String pizza6 = "Roma: Tomato, cheese, mushrooms";
     public static int price7 = 70;
     public static String pizza7 = "Spicy: Tomato, cheese, ham, chilli";
     public static int price8 = 80;
@@ -116,9 +116,12 @@ public class Pizza_Order {
             System.out.printf("0. No/Continue\n1. Garlic\n2. Ranch dressing\n3. Extra cheese");
             System.out.println();
 
+            //these topping counters are for making sure that the user doesnt chose more than 1 of each topping
             int garlicCount = 0;
             int ranchCount = 0;
             int cheeseCount = 0;
+
+            //the next scanner is in a while loop to allow the user to chose up to 3 different extra toppings
             while (next3) {
                 next3 = false;
                 next4 = false;
