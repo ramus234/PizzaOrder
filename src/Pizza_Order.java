@@ -34,28 +34,35 @@ public class Pizza_Order {
         //first checks if the input is an integer, if it is, it checks if the integer = 1.
         // if the input = 1, it prints out the menu and sets the boolean to true to continue the program.
         // if any other character is typed, it exits the program.
-        boolean next = false;
-        if (in.hasNextInt()) {
-            if (in.nextInt() == 1) {
-                printMenu();
-                next = true;
-            } else System.out.println("See you next time!");
-        } else System.out.println("See you next time!");
-
         boolean next2 = false;
         int input = 0;
-        //if the user has typed 1, continue with the order
-        if (next) {
-            System.out.println("Please chose the number you would like to order");
-            Scanner in2 = new Scanner(System.in);
-            if (in2.hasNextInt()) {
-                input = in2.nextInt();
-                if (input > 0 & input < 11) {
-                    System.out.print("You have chosen number " + input + ": ");
-                    next2 = true;
+        boolean next = false;
+            if (in.hasNextInt()) {
+                if (in.nextInt() == 1) {
+                    printMenu();
+                    next = true;
+                } else System.out.println("See you next time!");
+            } else System.out.println("See you next time!");
+
+            next2 = false;
+            input = 0;
+            //if the user has typed 1, continue with the order
+
+        do {
+
+            if (next) {
+                System.out.println("Please chose the number you would like to order");
+                Scanner in2 = new Scanner(System.in);
+                if (in2.hasNextInt()) {
+                    input = in2.nextInt();
+                    if (input > 0 & input < 11) {
+                        System.out.print("You have chosen number " + input + ": ");
+                        next2 = true;
+                    } else promptValidNum();
                 } else promptValidNum();
-            } else promptValidNum();
+            }
         }
+        while (!next2);
 
         double pizzaPrice = 0;
         String selectedPizza = "";
@@ -178,14 +185,18 @@ public class Pizza_Order {
                 next4 = false;
                 int in4input = 0;
                 int selectedSize = 0;
-                Scanner in4 = new Scanner(System.in);
-                if (in4.hasNextInt()) {
-                    in4input = in4.nextInt();
-                    if (in4input > 0 & in4input < 4) {
-                        selectedSize = in4input;
-                        next4 = true;
+
+                do {
+                    Scanner in4 = new Scanner(System.in);
+                    if (in4.hasNextInt()) {
+                        in4input = in4.nextInt();
+                        if (in4input > 0 & in4input < 4) {
+                            selectedSize = in4input;
+                            next4 = true;
+                        } else promptValidNum();
                     } else promptValidNum();
-                } else promptValidNum();
+                }
+                while(!next4);
 
                 String pizzaSize = "";
                 if (next4) {
