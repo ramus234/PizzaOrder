@@ -26,8 +26,7 @@ public class Pizza_Order {
 
     public static void main(String[] args) {
 
-        //initializes a new scanner, and prompts the user for input
-        Scanner in = new Scanner(System.in);
+        //prompts the user for input
         System.out.println("Welcome to the restaurant, type 1 to show the menu. type any other key to exit");
 
 
@@ -37,32 +36,27 @@ public class Pizza_Order {
         boolean next2 = false;
         int input = 0;
         boolean next = false;
-            if (in.hasNextInt()) {
-                if (in.nextInt() == 1) {
-                    printMenu();
-                    next = true;
-                } else System.out.println("See you next time!");
-            } else System.out.println("See you next time!");
+        if (promptUser(1, 2, false) == 1) {
+            printMenu();
+            next = true;
+        } else System.out.println("See you next time!");
 
-            next2 = false;
-            input = 0;
-            //if the user has typed 1, continue with the order
 
-        do {
-
-            if (next) {
+        next2 = false;
+        input = 0;
+        //if the user has typed 1, continue with the order
+        if (next) {
+            do {
                 System.out.println("Please chose the number you would like to order");
-                Scanner in2 = new Scanner(System.in);
-                if (in2.hasNextInt()) {
-                    input = in2.nextInt();
-                    if (input > 0 & input < 11) {
-                        System.out.print("You have chosen number " + input + ": ");
-                        next2 = true;
-                    } else promptValidNum();
-                } else promptValidNum();
+                input = promptUser(0, 11, true);
+                if (input != -1) {
+                    System.out.print("You have chosen number " + input + ": ");
+                    next2 = true;
+                }
             }
+            while (!next2);
         }
-        while (!next2);
+
 
         double pizzaPrice = 0;
         String selectedPizza = "";
@@ -123,28 +117,24 @@ public class Pizza_Order {
             System.out.printf("0. No/Continue\n1. Garlic\n2. Ranch dressing\n3. Extra cheese");
             System.out.println();
 
-            //these topping counters are for making sure that the user doesnt chose more than 1 of each topping
+            //these topping counters are for making sure that the user doesnt choose more than 1 of each topping
             int garlicCount = 0;
             int ranchCount = 0;
             int cheeseCount = 0;
 
-            //the next scanner is in a while loop to allow the user to chose up to 3 different extra toppings
+            //the next scanner is in a while loop to allow the user to choose up to 3 different extra toppings
             while (next3) {
                 next3 = false;
                 next4 = false;
-                Scanner in3 = new Scanner(System.in);
-                if (in3.hasNextInt()) {
-                    in3input = in3.nextInt();
-                    if (in3input > -1 & in3input < 4) {
-                        toppingsInput = in3input;
-                        next3 = true;
-                        next4 = true;
-                    } else promptValidNum();
-                } else promptValidNum();
 
+                toppingsInput = promptUser(0, 4, true);
+                if (toppingsInput != -1) {
+                    next3 = true;
+                }
                 if (next3) {
                     switch (toppingsInput) {
                         case 0:
+                            next4 = true;
                             next3 = false;
                             break;
                         case 1:
@@ -152,8 +142,7 @@ public class Pizza_Order {
                                 selectedTopping += ", garlic";
                                 pizzaPrice += 5;
                                 garlicCount++;
-                            }
-                            else System.out.println("Don't you think that's enough garlic?");
+                            } else System.out.println("Don't you think that's enough garlic?");
                             break;
                         case 2:
                             if (ranchCount < 1) {
@@ -161,16 +150,14 @@ public class Pizza_Order {
                                 pizzaPrice += 5;
                                 ranchCount++;
                                 break;
-                            }
-                            else System.out.println("Don't you think that's enough ranch?");
+                            } else System.out.println("Don't you think that's enough ranch?");
                         case 3:
                             if (cheeseCount < 1) {
                                 selectedTopping += ", extra cheese";
                                 pizzaPrice += 5;
                                 cheeseCount++;
                                 break;
-                            }
-                            else System.out.println("Don't you think that's enough cheese?");
+                            } else System.out.println("Don't you think that's enough cheese?");
                     }
                     System.out.println("You have chosen " + selectedPizza + selectedTopping);
                 }
@@ -187,16 +174,13 @@ public class Pizza_Order {
                 int selectedSize = 0;
 
                 do {
-                    Scanner in4 = new Scanner(System.in);
-                    if (in4.hasNextInt()) {
-                        in4input = in4.nextInt();
-                        if (in4input > 0 & in4input < 4) {
-                            selectedSize = in4input;
-                            next4 = true;
-                        } else promptValidNum();
-                    } else promptValidNum();
+                    in4input = promptUser(1,4,true);
+                    if (in4input != -1) {
+                        selectedSize = in4input;
+                        next4 = true;
+                    }
                 }
-                while(!next4);
+                while (!next4);
 
                 String pizzaSize = "";
                 if (next4) {
@@ -205,38 +189,54 @@ public class Pizza_Order {
                             pizzaSize = "standard size ";
                             break;
                         case 2:
-                            pizzaPrice = pizzaPrice*0.75;
+                            pizzaPrice = pizzaPrice * 0.75;
                             pizzaSize = "child size ";
                             break;
                         case 3:
-                            pizzaPrice = pizzaPrice*1.50;
+                            pizzaPrice = pizzaPrice * 1.50;
                             pizzaSize = "family size ";
                             break;
                     }
                     System.out.println("You have ordered a " + pizzaSize + selectedPizza + selectedTopping + " for the price of DKK " + pizzaPrice);
                 }
-                }
             }
         }
-
-        //this function prints the menu out to the console
-        public static void printMenu () {
-
-            System.out.printf("%-1s %-40s %-10s\n", "1.", pizza1, "Price DKK " + price1);
-            System.out.printf("%-1s %-40s %-10s\n", "2.", pizza2, "Price DKK " + price2);
-            System.out.printf("%-1s %-40s %-10s\n", "3.", pizza3, "Price DKK " + price3);
-            System.out.printf("%-1s %-40s %-10s\n", "4.", pizza4, "Price DKK " + price4);
-            System.out.printf("%-1s %-40s %-10s\n", "5.", pizza5, "Price DKK " + price5);
-            System.out.printf("%-1s %-40s %-10s\n", "6.", pizza6, "Price DKK " + price6);
-            System.out.printf("%-1s %-40s %-10s\n", "7.", pizza7, "Price DKK " + price7);
-            System.out.printf("%-1s %-40s %-10s\n", "8.", pizza8, "Price DKK " + price8);
-            System.out.printf("%-1s %-40s %-10s\n", "9.", pizza9, "Price DKK " + price9);
-            System.out.printf("%-1s %-39s %-10s\n", "10.", pizza10, "Price DKK " + price10);
-            System.out.println();
-        }
-
-        //this function asks the user for a valid number when the user inputs an invalid one
-        public static void promptValidNum () {
-            System.out.println("Please input a valid number");
-        }
     }
+
+    //this function prints the menu out to the console
+    public static void printMenu() {
+
+        System.out.printf("%-1s %-40s %-10s\n", "1.", pizza1, "Price DKK " + price1);
+        System.out.printf("%-1s %-40s %-10s\n", "2.", pizza2, "Price DKK " + price2);
+        System.out.printf("%-1s %-40s %-10s\n", "3.", pizza3, "Price DKK " + price3);
+        System.out.printf("%-1s %-40s %-10s\n", "4.", pizza4, "Price DKK " + price4);
+        System.out.printf("%-1s %-40s %-10s\n", "5.", pizza5, "Price DKK " + price5);
+        System.out.printf("%-1s %-40s %-10s\n", "6.", pizza6, "Price DKK " + price6);
+        System.out.printf("%-1s %-40s %-10s\n", "7.", pizza7, "Price DKK " + price7);
+        System.out.printf("%-1s %-40s %-10s\n", "8.", pizza8, "Price DKK " + price8);
+        System.out.printf("%-1s %-40s %-10s\n", "9.", pizza9, "Price DKK " + price9);
+        System.out.printf("%-1s %-39s %-10s\n", "10.", pizza10, "Price DKK " + price10);
+        System.out.println();
+    }
+
+    //this function makes a new scanner,
+    //and checks if the value inputted is within rangeStart and rangeEnd(exclusive) and is an integer.
+    //if it is, it returns the input. if not, it returns -1.
+    //if the boolean promptValid is set to true this function also prompts the user for
+    //a valid input if the input is either out of range or not an integer
+
+    public static int promptUser(int rangeStart, int rangeEnd, boolean promtValid) {
+
+        Scanner in = new Scanner(System.in);
+        if (in.hasNextInt()) {
+            int input = in.nextInt();
+            if (input >= rangeStart & input < rangeEnd) {
+                return input;
+            }
+            else if(promtValid) System.out.println("Please input a valid number");
+
+        }
+        return -1;
+    }
+}
+
