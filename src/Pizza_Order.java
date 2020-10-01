@@ -25,28 +25,25 @@ public class Pizza_Order {
     public static String pizza10 = "Fisherman: Tomato, Cheese, Tuna";
 
     public static void main(String[] args) {
-
-        //prompts the user for input
-        System.out.println("Welcome to the restaurant, type 1 to show the menu. type any other key to exit");
-
-
         //first checks if the input is an integer, if it is, it checks if the integer = 1.
         // if the input = 1, it prints out the menu and sets the boolean to true to continue the program.
         // if any other character is typed, it exits the program.
         boolean next2 = false;
         int input = 0;
         boolean next = false;
+
+        //prompts the user for input
+        System.out.println("Welcome to the restaurant, type 1 to show the menu. type any other key to exit");
         if (promptUser(1, 2, false) == 1) {
             printMenu();
             next = true;
         } else System.out.println("See you next time!");
 
-
         next2 = false;
         input = 0;
         //if the user has typed 1, continue with the order
         if (next) {
-            do {
+            while (!next2) {
                 System.out.println("Please chose the number you would like to order");
                 input = promptUser(0, 11, true);
                 if (input != -1) {
@@ -54,10 +51,7 @@ public class Pizza_Order {
                     next2 = true;
                 }
             }
-            while (!next2);
         }
-
-
         double pizzaPrice = 0;
         String selectedPizza = "";
 
@@ -108,7 +102,6 @@ public class Pizza_Order {
 
             boolean next3 = true;
             boolean next4 = true;
-            int in3input = 0;
             int toppingsInput = 0;
             String selectedTopping = "";
 
@@ -122,11 +115,8 @@ public class Pizza_Order {
             int ranchCount = 0;
             int cheeseCount = 0;
 
-            //the next scanner is in a while loop to allow the user to choose up to 3 different extra toppings
+            //the next scanner allows the user to choose up to 3 different extra toppings
             while (next3) {
-                next3 = false;
-                next4 = false;
-
                 toppingsInput = promptUser(0, 4, true);
                 if (toppingsInput != -1) {
                     next3 = true;
@@ -170,18 +160,16 @@ public class Pizza_Order {
                 System.out.printf("%-1s %-20s %-10s\n", "3.", "Family size", "Price DKK " + pizzaPrice * 1.50);
 
                 next4 = false;
-                int in4input = 0;
                 int selectedSize = 0;
 
-                do {
-                    in4input = promptUser(1,4,true);
-                    if (in4input != -1) {
-                        selectedSize = in4input;
-                        next4 = true;
-                    }
+                while (!next4) {
+                    int sizeInput = promptUser(1, 4, true);
+                if (sizeInput != -1) {
+                    selectedSize = sizeInput;
+                    next4 = true;
                 }
-                while (!next4);
-
+                else System.out.println("try again");
+            }
                 String pizzaSize = "";
                 if (next4) {
                     switch (selectedSize) {
@@ -225,7 +213,7 @@ public class Pizza_Order {
     //if the boolean promptValid is set to true this function also prompts the user for
     //a valid input if the input is either out of range or not an integer
 
-    public static int promptUser(int rangeStart, int rangeEnd, boolean promtValid) {
+    public static int promptUser(int rangeStart, int rangeEnd, boolean promptValid) {
 
         Scanner in = new Scanner(System.in);
         if (in.hasNextInt()) {
@@ -233,9 +221,9 @@ public class Pizza_Order {
             if (input >= rangeStart & input < rangeEnd) {
                 return input;
             }
-            else if(promtValid) System.out.println("Please input a valid number");
-
+            else if(promptValid) System.out.println("Please input a valid number");
         }
+        else if(promptValid) System.out.println("Please input a valid number");
         return -1;
     }
 }
