@@ -37,10 +37,10 @@ public class Pizza_Order {
         if (promptUser(1, 2, false) == 1) {
             printMenu();
             next = true;
-        } else System.out.println("See you next time!");
+        }
+        else System.out.println("See you next time!");
 
         next2 = false;
-        input = 0;
         //if the user has typed 1, continue with the order
         if (next) {
             while (!next2) {
@@ -159,8 +159,8 @@ public class Pizza_Order {
                 System.out.printf("%-1s %-20s %-10s\n", "2.", "Child size ", "Price DKK " + pizzaPrice * 0.75);
                 System.out.printf("%-1s %-20s %-10s\n", "3.", "Family size", "Price DKK " + pizzaPrice * 1.50);
 
-                next4 = false;
                 int selectedSize = 0;
+                    next4 = false;
 
                 while (!next4) {
                     int sizeInput = promptUser(1, 4, true);
@@ -168,7 +168,6 @@ public class Pizza_Order {
                     selectedSize = sizeInput;
                     next4 = true;
                 }
-                else System.out.println("try again");
             }
                 String pizzaSize = "";
                 if (next4) {
@@ -205,6 +204,7 @@ public class Pizza_Order {
         System.out.printf("%-1s %-40s %-10s\n", "9.", pizza9, "Price DKK " + price9);
         System.out.printf("%-1s %-39s %-10s\n", "10.", pizza10, "Price DKK " + price10);
         System.out.println();
+        
     }
 
     //this function makes a new scanner,
@@ -225,6 +225,7 @@ public class Pizza_Order {
         }
         else if(promptValid) System.out.println("Please input a valid number");
         return -1;
+
     }
 }
 
