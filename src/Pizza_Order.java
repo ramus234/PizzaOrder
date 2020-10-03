@@ -48,7 +48,6 @@ public class Pizza_Order {
         }
         double pizzaPrice = 0;
         String selectedPizza = "";
-
         if (next) {
             switch (pizzaInput) {
                 case 1:
