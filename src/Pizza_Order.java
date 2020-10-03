@@ -25,11 +25,7 @@ public class Pizza_Order {
     public static String pizza10 = "Fisherman: Tomato, Cheese, Tuna";
 
     public static void main(String[] args) {
-        //first checks if the input is an integer, if it is, it checks if the integer = 1.
-        // if the input = 1, it prints out the menu and sets the boolean to true to continue the program.
-        // if any other character is typed, it exits the program.
-        boolean next2 = false;
-        int input = 0;
+
         boolean next = false;
 
         //prompts the user for input
@@ -40,23 +36,21 @@ public class Pizza_Order {
         }
         else System.out.println("See you next time!");
 
-        next2 = false;
+        int pizzaInput = 0;
         //if the user has typed 1, continue with the order
-        if (next) {
-            while (!next2) {
-                System.out.println("Please chose the number you would like to order");
-                input = promptUser(0, 11, true);
-                if (input != -1) {
-                    System.out.print("You have chosen number " + input + ": ");
-                    next2 = true;
-                }
+        while (next) {
+            System.out.println("Please chose the number you would like to order");
+            pizzaInput = promptUser(0, 11, true);
+            if (pizzaInput != -1) {
+                System.out.print("You have chosen number " + pizzaInput + ": ");
+                break;
             }
         }
         double pizzaPrice = 0;
         String selectedPizza = "";
 
-        if (next2) {
-            switch (input) {
+        if (next) {
+            switch (pizzaInput) {
                 case 1:
                     pizzaPrice = price1;
                     selectedPizza = pizza1;
@@ -100,15 +94,12 @@ public class Pizza_Order {
             }
             System.out.println(selectedPizza);
 
-            boolean next3 = true;
-            boolean next4 = true;
-            int toppingsInput = 0;
             String selectedTopping = "";
+            int toppingsInput = 0;
 
             //prompts user if they would like any extra toppings
             System.out.println("Would you like any extra toppings? this will cost 5 DKK extra. you can order up to 1 of each topping");
-            System.out.printf("0. No/Continue\n1. Garlic\n2. Ranch dressing\n3. Extra cheese");
-            System.out.println();
+            System.out.printf("0. No/Continue\n1. Garlic\n2. Ranch dressing\n3. Extra cheese\n");
 
             //these topping counters are for making sure that the user doesnt choose more than 1 of each topping
             int garlicCount = 0;
@@ -116,77 +107,62 @@ public class Pizza_Order {
             int cheeseCount = 0;
 
             //the next scanner allows the user to choose up to 3 different extra toppings
-            while (next3) {
+            while (next) {
                 toppingsInput = promptUser(0, 4, true);
-                if (toppingsInput != -1) {
-                    next3 = true;
-                }
-                if (next3) {
-                    switch (toppingsInput) {
-                        case 0:
-                            next4 = true;
-                            next3 = false;
+                if (toppingsInput == 0) break;
+                switch (toppingsInput) {
+                    case 1:
+                        if (garlicCount < 1) {
+                            selectedTopping += ", garlic";
+                            pizzaPrice += 5;
+                            garlicCount++;
+                        } else System.out.println("Don't you think that's enough garlic?");
+                        break;
+                    case 2:
+                        if (ranchCount < 1) {
+                            selectedTopping += ", ranch dressing";
+                            pizzaPrice += 5;
+                            ranchCount++;
                             break;
-                        case 1:
-                            if (garlicCount < 1) {
-                                selectedTopping += ", garlic";
-                                pizzaPrice += 5;
-                                garlicCount++;
-                            } else System.out.println("Don't you think that's enough garlic?");
+                        } else System.out.println("Don't you think that's enough ranch?");
+                    case 3:
+                        if (cheeseCount < 1) {
+                            selectedTopping += ", extra cheese";
+                            pizzaPrice += 5;
+                            cheeseCount++;
                             break;
-                        case 2:
-                            if (ranchCount < 1) {
-                                selectedTopping += ", ranch dressing";
-                                pizzaPrice += 5;
-                                ranchCount++;
-                                break;
-                            } else System.out.println("Don't you think that's enough ranch?");
-                        case 3:
-                            if (cheeseCount < 1) {
-                                selectedTopping += ", extra cheese";
-                                pizzaPrice += 5;
-                                cheeseCount++;
-                                break;
-                            } else System.out.println("Don't you think that's enough cheese?");
-                    }
-                    System.out.println("You have chosen " + selectedPizza + selectedTopping);
+                        } else System.out.println("Don't you think that's enough cheese?");
                 }
+                System.out.println("You have chosen " + selectedPizza + selectedTopping);
             }
-            if (next4) {
-
                 System.out.println("Please chose the size of your pizza");
                 System.out.printf("%-1s %-20s %-10s\n", "1.", "Standard size", "Price DKK " + pizzaPrice);
                 System.out.printf("%-1s %-20s %-10s\n", "2.", "Child size ", "Price DKK " + pizzaPrice * 0.75);
                 System.out.printf("%-1s %-20s %-10s\n", "3.", "Family size", "Price DKK " + pizzaPrice * 1.50);
 
-                int selectedSize = 0;
-                    next4 = false;
-
-                while (!next4) {
-                    int sizeInput = promptUser(1, 4, true);
-                if (sizeInput != -1) {
-                    selectedSize = sizeInput;
-                    next4 = true;
-                }
-            }
                 String pizzaSize = "";
-                if (next4) {
-                    switch (selectedSize) {
-                        case 1:
-                            pizzaSize = "standard size ";
-                            break;
-                        case 2:
-                            pizzaPrice = pizzaPrice * 0.75;
-                            pizzaSize = "child size ";
-                            break;
-                        case 3:
-                            pizzaPrice = pizzaPrice * 1.50;
-                            pizzaSize = "family size ";
-                            break;
+                int selectedSize = 0;
+                while (next) {
+                    int sizeInput = promptUser(1, 4, true);
+                    if (sizeInput != -1) {
+                        selectedSize = sizeInput;
+                        switch (selectedSize) {
+                            case 1:
+                                pizzaSize = "standard size ";
+                                break;
+                            case 2:
+                                pizzaPrice = pizzaPrice * 0.75;
+                                pizzaSize = "child size ";
+                                break;
+                            case 3:
+                                pizzaPrice = pizzaPrice * 1.50;
+                                pizzaSize = "family size ";
+                                break;
+                        }
+                        break;
                     }
-                    System.out.println("You have ordered a " + pizzaSize + selectedPizza + selectedTopping + " for the price of DKK " + pizzaPrice);
                 }
-            }
+                System.out.println("You have ordered a " + pizzaSize + selectedPizza + selectedTopping + " for the price of DKK " + pizzaPrice);
         }
     }
 
@@ -214,7 +190,6 @@ public class Pizza_Order {
     //a valid input if the input is either out of range or not an integer
 
     public static int promptUser(int rangeStart, int rangeEnd, boolean promptValid) {
-
         Scanner in = new Scanner(System.in);
         if (in.hasNextInt()) {
             int input = in.nextInt();
@@ -225,7 +200,6 @@ public class Pizza_Order {
         }
         else if(promptValid) System.out.println("Please input a valid number");
         return -1;
-
     }
 }
 
