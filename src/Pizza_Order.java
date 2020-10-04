@@ -140,11 +140,12 @@ public class Pizza_Order {
                 System.out.printf("%-1s %-20s %-10s\n", "3.", "Family size", "Price DKK " + pizzaPrice * 1.50);
 
                 String pizzaSize = "";
-                int selectedSize = 0;
+
+                //this scanner asks the user for the size of the pizza, and adjusts the pizzaPrice and pizzaSize accordingly
                 while (next) {
                     int sizeInput = promptUser(1, 4, true);
                     if (sizeInput != -1) {
-                        selectedSize = sizeInput;
+                        int selectedSize = sizeInput;
                         switch (selectedSize) {
                             case 1:
                                 pizzaSize = "standard size ";
@@ -161,6 +162,7 @@ public class Pizza_Order {
                         break;
                     }
                 }
+                //at last the receipt is printed out
                 System.out.println("You have ordered a " + pizzaSize + selectedPizza + selectedTopping + " for the price of DKK " + pizzaPrice);
         }
     }
