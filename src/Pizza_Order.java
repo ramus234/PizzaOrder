@@ -184,12 +184,13 @@ public class Pizza_Order {
         
     }
 
-    //this function makes a new scanner,
-    //and checks if the value inputted is within rangeStart and rangeEnd(exclusive) and is an integer.
-    //if it is, it returns the input. if not, it returns -1.
-    //if the boolean promptValid is set to true this function also prompts the user for
-    //a valid input if the input is either out of range or not an integer
-
+    /*
+    this function makes a new scanner
+    and checks if the value inputted is within rangeStart and rangeEnd(exclusive) and is an integer.
+    if it is, it returns the input. if not, it returns -1.
+    if the boolean promptValid is set to true this function also prompts the user for
+    a valid input if the input is either out of range or not an integer
+    */
     public static int promptUser(int rangeStart, int rangeEnd, boolean promptValid) {
         Scanner in = new Scanner(System.in);
         if (in.hasNextInt()) {
