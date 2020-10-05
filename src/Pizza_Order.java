@@ -3,26 +3,26 @@ import java.util.Scanner;
 public class Pizza_Order {
 
     //defines the prices and names for all the pizzas. this is defined as a variable here as we will need it multiple times throughout the project
-    public static int price1 = 50;
-    public static String pizza1 = "Margherita: Tomato, cheese";
-    public static int price2 = 60;
-    public static String pizza2 = "Kebab; Tomato, cheese, lettuce";
-    public static int price3 = 60;
-    public static String pizza3 = "Hawaii: Tomato, cheese, pineapple";
-    public static int price4 = 70;
-    public static String pizza4 = "L.A: Tomato, cheese, ham, bacon";
-    public static int price5 = 60;
-    public static String pizza5 = "Torino: Tomato, cheese, sausage";
-    public static int price6 = 80;
-    public static String pizza6 = "Roma: Tomato, cheese, mushrooms";
-    public static int price7 = 70;
-    public static String pizza7 = "Spicy: Tomato, cheese, ham, chilli";
-    public static int price8 = 80;
-    public static String pizza8 = "Tomato Lover: Tomato";
-    public static int price9 = 70;
-    public static String pizza9 = "Cheese Lover: Cheese";
-    public static int price10 = 80;
-    public static String pizza10 = "Fisherman: Tomato, Cheese, Tuna";
+    static int price1 = 50;
+    static String pizza1 = "Margherita: Tomato, cheese";
+    static int price2 = 60;
+    static String pizza2 = "Kebab; Tomato, cheese, lettuce";
+    static int price3 = 60;
+    static String pizza3 = "Hawaii: Tomato, cheese, pineapple";
+    static int price4 = 70;
+    static String pizza4 = "L.A: Tomato, cheese, ham, bacon";
+    static int price5 = 60;
+    static String pizza5 = "Torino: Tomato, cheese, sausage";
+    static int price6 = 80;
+    static String pizza6 = "Roma: Tomato, cheese, mushrooms";
+    static int price7 = 70;
+    static String pizza7 = "Spicy: Tomato, cheese, ham, chilli";
+    static int price8 = 80;
+    static String pizza8 = "Tomato Lover: Tomato";
+    static int price9 = 70;
+    static String pizza9 = "Cheese Lover: Cheese";
+    static int price10 = 80;
+    static String pizza10 = "Fisherman: Tomato, Cheese, Tuna";
 
     public static void main(String[] args) {
 
