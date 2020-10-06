@@ -2,7 +2,8 @@ import java.util.Scanner;
 
 public class Pizza_Order {
 
-    //defines the prices and names for all the pizzas. this is defined as a variable here as we will need it multiple times throughout the project
+
+//defines the prices and names for all the pizzas. this is defined as a variable here as we will need it multiple times throughout the project
     static int price1 = 50;
     static String pizza1 = "Margherita: Tomato, cheese";
     static int price2 = 60;
@@ -23,7 +24,7 @@ public class Pizza_Order {
     static String pizza9 = "Cheese Lover: Cheese";
     static int price10 = 80;
     static String pizza10 = "Fisherman: Tomato, Cheese, Tuna";
-
+    
     public static void main(String[] args) {
 
         boolean next = false;
@@ -167,7 +168,10 @@ public class Pizza_Order {
         }
     }
 
-    //this function prints the menu out to the console
+    /**
+     * This function prints the menu out to the console
+     */
+
     public static void printMenu() {
 
         System.out.printf("%-1s %-40s %-10s\n", "1.", pizza1, "Price DKK " + price1);
@@ -184,13 +188,18 @@ public class Pizza_Order {
         
     }
 
-    /*
-    this function makes a new scanner
-    and checks if the value inputted is within rangeStart and rangeEnd(exclusive) and is an integer.
-    if it is, it returns the input. if not, it returns -1.
-    if the boolean promptValid is set to true this function also prompts the user for
-    a valid input if the input is either out of range or not an integer
-    */
+    /**
+     * this function makes a new scanner
+     * and checks if the value inputted is within rangeStart and rangeEnd(exclusive) and is an integer.
+     * if it is, it returns the input. if not, it returns -1.
+     * if the boolean promptValid is set to true this function also prompts the user for
+     * a valid input if the input is either out of range or not an integer
+     *
+     * @param rangeStart  the range start
+     * @param rangeEnd    the range end
+     * @param promptValid the prompt valid
+     * @return int the input. -1 if invalid input
+     */
     public static int promptUser(int rangeStart, int rangeEnd, boolean promptValid) {
         Scanner in = new Scanner(System.in);
         if (in.hasNextInt()) {
@@ -205,3 +214,4 @@ public class Pizza_Order {
     }
 }
 
+//Tested by Jonas
