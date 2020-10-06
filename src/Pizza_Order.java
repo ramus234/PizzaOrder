@@ -200,9 +200,9 @@ public class Pizza_Order {
      * if the boolean promptValid is set to true this function also prompts the user for
      * a valid input if the input is either out of range or not an integer
      *
-     * @param rangeStart  the range start
-     * @param rangeEnd    the range end
-     * @param promptValid the prompt valid
+     * @param rangeStart  the int range start
+     * @param rangeEnd    the int range end
+     * @param promptValid the boolean if the method should prompt for valid input
      * @return int the input. -1 if invalid input
      */
     public static int promptUser(int rangeStart, int rangeEnd, boolean promptValid) {
