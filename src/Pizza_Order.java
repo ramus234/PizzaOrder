@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class Pizza_Order {
 
-
 //defines the prices and names for all the pizzas. this is defined as a variable here as we will need it multiple times throughout the project
     static int price1 = 50;
     static String pizza1 = "Margherita: Tomato, cheese";
@@ -28,7 +27,6 @@ public class Pizza_Order {
     public static void main(String[] args) {
 
         boolean next = false;
-
         //prompts the user for the menu
         System.out.println("Welcome to the restaurant, type 1 to show the menu. type any other key to exit");
         if (promptUser(1, 2, false) == 1) {
@@ -94,8 +92,6 @@ public class Pizza_Order {
             }
             System.out.println(selectedPizza);
 
-
-
             //prompts user if they would like any extra toppings
             System.out.println("Would you like any extra toppings? this will cost 5 DKK extra. you can order up to 1 of each topping");
             System.out.printf("0. No/Continue\n1. Garlic\n2. Ranch dressing\n3. Extra cheese\n");
@@ -118,24 +114,21 @@ public class Pizza_Order {
                             selectedTopping += ", garlic";
                             pizzaPrice += 5;
                             garlicCount++;
-                        }
-                        else System.out.println("Don't you think that's enough garlic?");
+                        } else System.out.println("Don't you think that's enough garlic?");
                         break;
                     case 2:
                         if (ranchCount < 1) {
                             selectedTopping += ", ranch dressing";
                             pizzaPrice += 5;
                             ranchCount++;
-                        }
-                        else System.out.println("Don't you think that's enough ranch?");
+                        } else System.out.println("Don't you think that's enough ranch?");
                         break;
                     case 3:
                         if (cheeseCount < 1) {
                             selectedTopping += ", extra cheese";
                             pizzaPrice += 5;
                             cheeseCount++;
-                        }
-                        else System.out.println("Don't you think that's enough cheese?");
+                        } else System.out.println("Don't you think that's enough cheese?");
                         break;
                 }
                 System.out.println("You have chosen " + selectedPizza + selectedTopping);
