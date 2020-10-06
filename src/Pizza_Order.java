@@ -29,7 +29,7 @@ public class Pizza_Order {
 
         boolean next = false;
 
-        //prompts the user for input
+        //prompts the user for the menu
         System.out.println("Welcome to the restaurant, type 1 to show the menu. type any other key to exit");
         if (promptUser(1, 2, false) == 1) {
             printMenu();
@@ -94,12 +94,14 @@ public class Pizza_Order {
             }
             System.out.println(selectedPizza);
 
-            String selectedTopping = "";
-            int toppingsInput = 0;
+
 
             //prompts user if they would like any extra toppings
             System.out.println("Would you like any extra toppings? this will cost 5 DKK extra. you can order up to 1 of each topping");
             System.out.printf("0. No/Continue\n1. Garlic\n2. Ranch dressing\n3. Extra cheese\n");
+
+            String selectedTopping = "";
+            int toppingsInput = 0;
 
             //these topping counters are for making sure that the user doesnt choose more than 1 of each topping
             int garlicCount = 0;
