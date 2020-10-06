@@ -118,22 +118,25 @@ public class Pizza_Order {
                             selectedTopping += ", garlic";
                             pizzaPrice += 5;
                             garlicCount++;
-                        } else System.out.println("Don't you think that's enough garlic?");
+                        }
+                        else System.out.println("Don't you think that's enough garlic?");
                         break;
                     case 2:
                         if (ranchCount < 1) {
                             selectedTopping += ", ranch dressing";
                             pizzaPrice += 5;
                             ranchCount++;
-                            break;
-                        } else System.out.println("Don't you think that's enough ranch?");
+                        }
+                        else System.out.println("Don't you think that's enough ranch?");
+                        break;
                     case 3:
                         if (cheeseCount < 1) {
                             selectedTopping += ", extra cheese";
                             pizzaPrice += 5;
                             cheeseCount++;
-                            break;
-                        } else System.out.println("Don't you think that's enough cheese?");
+                        }
+                        else System.out.println("Don't you think that's enough cheese?");
+                        break;
                 }
                 System.out.println("You have chosen " + selectedPizza + selectedTopping);
             }
