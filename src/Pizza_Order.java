@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Pizza_Order {
 
-//defines the prices and names for all the pizzas. this is defined as a variable here as we will need it multiple times throughout the project
+    //defines the prices and names for all the pizzas. this is defined as a variable here as we will need it multiple times throughout the project
     static int price1 = 50;
     static String pizza1 = "Margherita: Tomato, cheese";
     static int price2 = 60;
@@ -23,7 +23,7 @@ public class Pizza_Order {
     static String pizza9 = "Cheese Lover: Cheese";
     static int price10 = 80;
     static String pizza10 = "Fisherman: Tomato, Cheese, Tuna";
-    
+
     public static void main(String[] args) {
 
         boolean next = false;
@@ -32,14 +32,15 @@ public class Pizza_Order {
         if (promptUser(1, 2, false) == 1) {
             printMenu();
             next = true;
-        }
-        else System.out.println("See you next time!");
+        } else System.out.println("See you next time!");
 
         int pizzaInput = 0;
         //if the user has typed 1, continue with the order
         while (next) {
             System.out.println("Please chose the number you would like to order");
             pizzaInput = promptUser(0, 11, true);
+            //-1 is my error code for the promptUser method. so if it doesn't return -1, the input is valid,
+            //and the while loop can be broken.
             if (pizzaInput != -1) {
                 System.out.print("You have chosen number " + pizzaInput + ": ");
                 break;
@@ -109,6 +110,8 @@ public class Pizza_Order {
                 toppingsInput = promptUser(0, 4, true);
                 if (toppingsInput == 0) break;
                 switch (toppingsInput) {
+                    //if any of the counters are less than 1, the user is allowed to chose that topping. if they do,
+                    //the topping will be added to the selectedTopping string and the pizzaPrice will be incremented by 5
                     case 1:
                         if (garlicCount < 1) {
                             selectedTopping += ", garlic";
@@ -133,36 +136,36 @@ public class Pizza_Order {
                 }
                 System.out.println("You have chosen " + selectedPizza + selectedTopping);
             }
-                System.out.println("Please chose the size of your pizza");
-                System.out.printf("%-1s %-20s %-10s\n", "1.", "Standard size", "Price DKK " + pizzaPrice);
-                System.out.printf("%-1s %-20s %-10s\n", "2.", "Child size ", "Price DKK " + pizzaPrice * 0.75);
-                System.out.printf("%-1s %-20s %-10s\n", "3.", "Family size", "Price DKK " + pizzaPrice * 1.50);
+            System.out.println("Please chose the size of your pizza");
+            System.out.printf("%-1s %-20s %-10s\n", "1.", "Standard size", "Price DKK " + pizzaPrice);
+            System.out.printf("%-1s %-20s %-10s\n", "2.", "Child size ", "Price DKK " + pizzaPrice * 0.75);
+            System.out.printf("%-1s %-20s %-10s\n", "3.", "Family size", "Price DKK " + pizzaPrice * 1.50);
 
-                String pizzaSize = "";
+            String pizzaSize = "";
 
-                //this scanner asks the user for the size of the pizza, and adjusts the pizzaPrice and pizzaSize accordingly
-                while (next) {
-                    int sizeInput = promptUser(1, 4, true);
-                    if (sizeInput != -1) {
-                        int selectedSize = sizeInput;
-                        switch (selectedSize) {
-                            case 1:
-                                pizzaSize = "standard size ";
-                                break;
-                            case 2:
-                                pizzaPrice = pizzaPrice * 0.75;
-                                pizzaSize = "child size ";
-                                break;
-                            case 3:
-                                pizzaPrice = pizzaPrice * 1.50;
-                                pizzaSize = "family size ";
-                                break;
-                        }
-                        break;
+            //this scanner asks the user for the size of the pizza, and adjusts the pizzaPrice and pizzaSize accordingly
+            while (next) {
+                int sizeInput = promptUser(1, 4, true);
+                if (sizeInput != -1) {
+                    int selectedSize = sizeInput;
+                    switch (selectedSize) {
+                        case 1:
+                            pizzaSize = "standard size ";
+                            break;
+                        case 2:
+                            pizzaPrice = pizzaPrice * 0.75;
+                            pizzaSize = "child size ";
+                            break;
+                        case 3:
+                            pizzaPrice = pizzaPrice * 1.50;
+                            pizzaSize = "family size ";
+                            break;
                     }
+                    break;
                 }
-                //at last the receipt is printed out
-                System.out.println("You have ordered a " + pizzaSize + selectedPizza + selectedTopping + " for the price of DKK " + pizzaPrice);
+            }
+            //at last the receipt is printed out
+            System.out.println("You have ordered a " + pizzaSize + selectedPizza + selectedTopping + " for the price of DKK " + pizzaPrice);
         }
     }
 
@@ -183,7 +186,7 @@ public class Pizza_Order {
         System.out.printf("%-1s %-40s %-10s\n", "9.", pizza9, "Price DKK " + price9);
         System.out.printf("%-1s %-39s %-10s\n", "10.", pizza10, "Price DKK " + price10);
         System.out.println();
-        
+
     }
 
     /**
@@ -196,7 +199,7 @@ public class Pizza_Order {
      * @param rangeStart  the int range start
      * @param rangeEnd    the int range end
      * @param promptValid the boolean if the method should prompt for valid input
-     * @return int the input. -1 if invalid input
+     * @return int returns the input. -1 if invalid input
      */
     public static int promptUser(int rangeStart, int rangeEnd, boolean promptValid) {
         Scanner in = new Scanner(System.in);
@@ -204,10 +207,8 @@ public class Pizza_Order {
             int input = in.nextInt();
             if (input >= rangeStart & input < rangeEnd) {
                 return input;
-            }
-            else if(promptValid) System.out.println("Please input a valid number");
-        }
-        else if(promptValid) System.out.println("Please input a valid number");
+            } else if (promptValid) System.out.println("Please input a valid number");
+        } else if (promptValid) System.out.println("Please input a valid number");
         return -1;
     }
 }
